@@ -5,6 +5,22 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2C01125D1CE59B2C003E98F3"
+               BuildableName = "shaderz.app"
+               BlueprintName = "shaderz"
+               ReferencedContainer = "container:shaderz.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -12,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2C0112781CE59B2C003E98F3"
+               BuildableName = "shaderzTests.xctest"
+               BlueprintName = "shaderzTests"
+               ReferencedContainer = "container:shaderz.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2C0112831CE59B2C003E98F3"
+               BuildableName = "shaderzUITests.xctest"
+               BlueprintName = "shaderzUITests"
+               ReferencedContainer = "container:shaderz.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2C01125D1CE59B2C003E98F3"
+            BuildableName = "shaderz.app"
+            BlueprintName = "shaderz"
+            ReferencedContainer = "container:shaderz.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -25,7 +70,18 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
+      enableGPUFrameCaptureMode = "2"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2C01125D1CE59B2C003E98F3"
+            BuildableName = "shaderz.app"
+            BlueprintName = "shaderz"
+            ReferencedContainer = "container:shaderz.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -35,6 +91,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "2C01125D1CE59B2C003E98F3"
+            BuildableName = "shaderz.app"
+            BlueprintName = "shaderz"
+            ReferencedContainer = "container:shaderz.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

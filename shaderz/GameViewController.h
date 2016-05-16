@@ -8,7 +8,23 @@
 
 #import <UIKit/UIKit.h>
 #import <SceneKit/SceneKit.h>
+@import CoreMotion;
 
-@interface GameViewController : UIViewController
+
+@interface GameViewController<SCNSceneRendererDelegate> : UIViewController
+
+{
+
+    
+    SCNView* scnView;
+
+    NSArray *techniques;
+    int currentTechnique;
+
+    SCNNode *cameraNode;
+    
+    CMMotionManager *motionManager;
+    GLKMatrix4 cameraView;
+}
 
 @end

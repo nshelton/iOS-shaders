@@ -7,8 +7,50 @@
 //
 
 #import "GameViewController.h"
+#import <GLKit/GLKit.h>
+
+@interface GameViewController () <SCNSceneRendererDelegate>
+{
+
+}
+@end
 
 @implementation GameViewController
+
+
+- (void) renderer:(id <SCNSceneRenderer>)renderer updateAtTime:(NSTimeInterval)time
+{
+    cameraView = SCNMatrix4ToGLKMatrix4(scnView.pointOfView.transform);
+}
+
+- (void) loadTechniques
+{
+    NSURL *url;
+    url = [[NSBundle mainBundle] URLForResource:@"MandelBox" withExtension:@"plist"];
+    SCNTechnique *technique0 = [SCNTechnique techniqueWithDictionary:[NSDictionary dictionaryWithContentsOfURL:url]];
+    [technique0
+     handleBindingOfSymbol:@"modelViewSymbol"
+     usingBlock:^(unsigned int programID, unsigned int location, SCNNode* _Nonnull renderedNode, SCNRenderer* _Nonnull renderer) {
+         glUniformMatrix4fv(location, 1, GL_FALSE, cameraView.m);
+     }
+     ];
+    
+    
+    url = [[NSBundle mainBundle] URLForResource:@"torusField" withExtension:@"plist"];
+    SCNTechnique *technique1 = [SCNTechnique techniqueWithDictionary:[NSDictionary dictionaryWithContentsOfURL:url]];
+    [technique1
+     handleBindingOfSymbol:@"modelViewSymbol"
+     usingBlock:^(unsigned int programID, unsigned int location, SCNNode* _Nonnull renderedNode, SCNRenderer* _Nonnull renderer) {
+         glUniformMatrix4fv(location, 1, GL_FALSE, cameraView.m);
+     }
+     ];
+    techniques = @[technique0, technique1];
+}
+- (void) setupUniforms
+{
+    
+
+}
 
 - (void)viewDidLoad
 {
@@ -16,37 +58,19 @@
 
     // create a new scene
     SCNScene *scene = [SCNScene sceneNamed:@"art.scnassets/ship.scn"];
-
+    
     // create and add a camera to the scene
-    SCNNode *cameraNode = [SCNNode node];
+    cameraNode = [SCNNode node];
     cameraNode.camera = [SCNCamera camera];
     [scene.rootNode addChildNode:cameraNode];
     
     // place the camera
     cameraNode.position = SCNVector3Make(0, 0, 15);
     
-    // create and add a light to the scene
-    SCNNode *lightNode = [SCNNode node];
-    lightNode.light = [SCNLight light];
-    lightNode.light.type = SCNLightTypeOmni;
-    lightNode.position = SCNVector3Make(0, 10, 10);
-    [scene.rootNode addChildNode:lightNode];
-    
-    // create and add an ambient light to the scene
-    SCNNode *ambientLightNode = [SCNNode node];
-    ambientLightNode.light = [SCNLight light];
-    ambientLightNode.light.type = SCNLightTypeAmbient;
-    ambientLightNode.light.color = [UIColor darkGrayColor];
-    [scene.rootNode addChildNode:ambientLightNode];
-    
-    // retrieve the ship node
-    SCNNode *ship = [scene.rootNode childNodeWithName:@"ship" recursively:YES];
-    
-    // animate the 3d object
-    [ship runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1]]];
-    
     // retrieve the SCNView
-    SCNView *scnView = (SCNView *)self.view;
+    scnView = (SCNView *)self.view;
+    scnView.delegate = self;
+    scnView.playing = true;
     
     // set the scene to the view
     scnView.scene = scene;
@@ -56,9 +80,6 @@
         
     // show statistics such as fps and timing information
     scnView.showsStatistics = YES;
-
-    // configure the view
-    scnView.backgroundColor = [UIColor blackColor];
     
     // add a tap gesture recognizer
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
@@ -66,47 +87,41 @@
     [gestureRecognizers addObject:tapGesture];
     [gestureRecognizers addObjectsFromArray:scnView.gestureRecognizers];
     scnView.gestureRecognizers = gestureRecognizers;
+
+
+    [self loadTechniques];
+    
+    cameraView = GLKMatrix4Identity;
+
+//    currentTechnique = arc4random() %2;
+    scnView.technique = techniques[0];
+    
+//    [motionManager startDeviceMotionUpdates];
+    
+//      ]ToQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion *devMotion, NSError *error) {
+//        NSLog(@"%f", devMotion.attitude.quaternion.x);
+//    }];
+
 }
 
 - (void) handleTap:(UIGestureRecognizer*)gestureRecognize
 {
-    // retrieve the SCNView
-    SCNView *scnView = (SCNView *)self.view;
+    CGPoint location = [gestureRecognize locationInView:self.view];
     
-    // check what nodes are tapped
-    CGPoint p = [gestureRecognize locationInView:scnView];
-    NSArray *hitResults = [scnView hitTest:p options:nil];
+    NSLog(NSStringFromCGPoint(location));
+    currentTechnique++;
+    currentTechnique%=2;
+    scnView.technique = techniques[currentTechnique];
     
-    // check that we clicked on at least one object
-    if([hitResults count] > 0){
-        // retrieved the first clicked object
-        SCNHitTestResult *result = [hitResults objectAtIndex:0];
-        
-        // get its material
-        SCNMaterial *material = result.node.geometry.firstMaterial;
-        
-        // highlight it
-        [SCNTransaction begin];
-        [SCNTransaction setAnimationDuration:0.5];
-        
-        // on completion - unhighlight
-        [SCNTransaction setCompletionBlock:^{
-            [SCNTransaction begin];
-            [SCNTransaction setAnimationDuration:0.5];
-            
-            material.emission.contents = [UIColor blackColor];
-            
-            [SCNTransaction commit];
-        }];
-        
-        material.emission.contents = [UIColor redColor];
-        
-        [SCNTransaction commit];
-    }
 }
 
 - (BOOL)shouldAutorotate
 {
+    
+    NSString *res = [NSString stringWithFormat:@"%f, %f, %f", scnView.frame.size.width, scnView.frame.size.height, scnView.contentScaleFactor];
+
+    [scnView.technique setValue:res forKey:@"resolutionSymbol" ];
+
     return YES;
 }
 
