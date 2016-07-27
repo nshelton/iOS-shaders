@@ -9,6 +9,13 @@
 			<key>type</key>
 			<string>mat4</string>
 		</dict>
+		<key>colorMapSymbol</key>
+		<dict>
+			<key>image</key>
+			<string>colormap.png</string>
+			<key>type</key>
+			<string>sampler2D</string>
+		</dict>
 		<key>noiseSymbol</key>
 		<dict>
 			<key>image</key>
@@ -69,6 +76,8 @@
 				<string>traceResult</string>
 				<key>noiseSampler</key>
 				<string>noiseSymbol</string>
+				<key>colorMap</key>
+				<string>colorMapSymbol</string>
 			</dict>
 			<key>outputs</key>
 			<dict>
@@ -83,8 +92,8 @@
 		<dict>
 			<key>type</key>
 			<string>color</string>
-			<key>scaleFactor</key>
-			<real>0.5</real>
+			<key>size</key>
+			<string>200x200</string>
 		</dict>
 	</dict>
 </dict>

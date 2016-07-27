@@ -31,8 +31,13 @@
     [technique0
      handleBindingOfSymbol:@"modelViewSymbol"
      usingBlock:^(unsigned int programID, unsigned int location, SCNNode* _Nonnull renderedNode, SCNRenderer* _Nonnull renderer) {
-         glUniformMatrix4fv(location, 1, GL_FALSE, cameraView.m);
-     }
+         float t = 0.5 + CACurrentMediaTime()/300.;
+         GLKVector3 tr = GLKVector3Make(-.81 + 3. * sin(2.14*t), .05+2.5 * sin(.942*t+1.3), .05 + 3.5 * cos(3.594*t));
+         cameraView.m30 = tr.x;
+         cameraView.m31 = tr.y;
+         cameraView.m32 = tr.z;
+
+         glUniformMatrix4fv(location, 1, GL_FALSE, cameraView.m);     }
      ];
     
     
@@ -41,7 +46,12 @@
     [technique1
      handleBindingOfSymbol:@"modelViewSymbol"
      usingBlock:^(unsigned int programID, unsigned int location, SCNNode* _Nonnull renderedNode, SCNRenderer* _Nonnull renderer) {
+         
+         float t = 0.5 + CACurrentMediaTime()/100.;
+         cameraView = GLKMatrix4Translate(cameraView, -.81 + 3. * sin(2.14*t), .05+2.5 * sin(.942*t+1.3), .05 + 3.5 * cos(3.594*t));
+         NSLog(@"BINDING: %@", NSStringFromGLKMatrix4(cameraView));
          glUniformMatrix4fv(location, 1, GL_FALSE, cameraView.m);
+         
      }
      ];
     techniques = @[technique0, technique1];
@@ -55,7 +65,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    NSLog(@"LOaded");
     // create a new scene
     SCNScene *scene = [SCNScene sceneNamed:@"art.scnassets/ship.scn"];
     
@@ -82,11 +92,11 @@
     scnView.showsStatistics = YES;
     
     // add a tap gesture recognizer
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    NSMutableArray *gestureRecognizers = [NSMutableArray array];
-    [gestureRecognizers addObject:tapGesture];
-    [gestureRecognizers addObjectsFromArray:scnView.gestureRecognizers];
-    scnView.gestureRecognizers = gestureRecognizers;
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+//    NSMutableArray *gestureRecognizers = [NSMutableArray array];
+//    [gestureRecognizers addObject:tapGesture];
+//    [gestureRecognizers addObjectsFromArray:scnView.gestureRecognizers];
+//    scnView.gestureRecognizers = gestureRecognizers;
 
 
     [self loadTechniques];
@@ -95,7 +105,9 @@
 
 //    currentTechnique = arc4random() %2;
     scnView.technique = techniques[0];
-    
+//    [scnView.technique setValue:@"1000,700,2" forKey:@"resolutionSymbol" ];
+    NSLog(@"Scale factor is %f", scnView.contentScaleFactor);
+    scnView.contentScaleFactor = 1;
 //    [motionManager startDeviceMotionUpdates];
     
 //      ]ToQueue:[NSOperationQueue mainQueue] withHandler:^(CMDeviceMotion *devMotion, NSError *error) {
@@ -106,12 +118,20 @@
 
 - (void) handleTap:(UIGestureRecognizer*)gestureRecognize
 {
-    CGPoint location = [gestureRecognize locationInView:self.view];
     
-    NSLog(NSStringFromCGPoint(location));
-    currentTechnique++;
-    currentTechnique%=2;
-    scnView.technique = techniques[currentTechnique];
+    
+//    CGPoint location = [gestureRecognize locationInView:self.view];
+    
+//    NSLog(NSStringFromCGPoint(location));
+//    currentTechnique++;
+//    currentTechnique%=2;
+//    scnView.technique = techniques[currentTechnique];
+//    GLKVector4 t = GLKVector4Make(0,0,0.001, 1.0);
+//    
+//    vec3 p = GLKVector( );
+//
+//    t = GLKMatrix4MultiplyVector4(cameraView, t);
+//    
     
 }
 
@@ -121,7 +141,7 @@
     NSString *res = [NSString stringWithFormat:@"%f, %f, %f", scnView.frame.size.width, scnView.frame.size.height, scnView.contentScaleFactor];
 
     [scnView.technique setValue:res forKey:@"resolutionSymbol" ];
-
+    NSLog(@"Set REs to %@", res);
     return YES;
 }
 
