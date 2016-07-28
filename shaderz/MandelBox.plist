@@ -4,6 +4,11 @@
 <dict>
 	<key>symbols</key>
 	<dict>
+		<key>paramSymbol</key>
+		<dict>
+			<key>type</key>
+			<string>vec4</string>
+		</dict>
 		<key>modelViewSymbol</key>
 		<dict>
 			<key>type</key>
@@ -38,6 +43,7 @@
 	<array>
 		<string>raytrace</string>
 		<string>post</string>
+		<string>fx</string>
 	</array>
 	<key>passes</key>
 	<dict>
@@ -57,6 +63,8 @@
 				<string>timeSymbol</string>
 				<key>u_resolution</key>
 				<string>resolutionSymbol</string>
+				<key>params</key>
+				<string>paramSymbol</string>
 			</dict>
 			<key>outputs</key>
 			<dict>
@@ -82,18 +90,44 @@
 			<key>outputs</key>
 			<dict>
 				<key>color</key>
+				<string>colorBuffer</string>
+			</dict>
+		</dict>
+		<key>fx</key>
+		<dict>
+			<key>draw</key>
+			<string>DRAW_QUAD</string>
+			<key>program</key>
+			<string>postfx</string>
+			<key>inputs</key>
+			<dict>
+				<key>colorSampler</key>
+				<string>colorBuffer</string>
+				<key>noiseSampler</key>
+				<string>noiseSymbol</string>
+			</dict>
+			<key>outputs</key>
+			<dict>
+				<key>color</key>
 				<string>COLOR</string>
 			</dict>
 		</dict>
 	</dict>
 	<key>targets</key>
 	<dict>
+		<key>colorBuffer</key>
+		<dict>
+			<key>type</key>
+			<string>color</string>
+			<key>size</key>
+			<string>640x480</string>
+		</dict>
 		<key>traceResult</key>
 		<dict>
 			<key>type</key>
 			<string>color</string>
 			<key>size</key>
-			<string>200x200</string>
+			<string>320x240</string>
 		</dict>
 	</dict>
 </dict>

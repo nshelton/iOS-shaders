@@ -13,18 +13,17 @@
 
 @interface GameViewController<SCNSceneRendererDelegate> : UIViewController
 
-{
 
-    
-    SCNView* scnView;
 
-    NSArray *techniques;
-    int currentTechnique;
+@property (strong, nonatomic) IBOutlet UISlider *scaleSlider;
 
-    SCNNode *cameraNode;
-    
-    CMMotionManager *motionManager;
-    GLKMatrix4 cameraView;
-}
+@property (nonatomic, weak) SCNView*        scnView;
+@property (nonatomic, strong) NSArray*      techniques;
+@property (nonatomic) int                   currentTechnique;
+@property (nonatomic, weak) SCNNode*        cameraNode;
+@property (nonatomic) GLKMatrix4            cameraView;
 
+//
+- (IBAction)sliderChanged:(id)sender;
+//
 @end

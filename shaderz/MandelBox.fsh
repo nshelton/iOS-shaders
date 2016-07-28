@@ -7,13 +7,16 @@ varying vec2 uv;
 varying vec2 v_coord;
 uniform mat4 u_modelViewTransform;
 
+
+uniform vec4 params;
+
 #define PI 3.1415
 
-#define MAX_ITER  30
+#define MAX_ITER  50
 
-#define dthresh 1.0
-#define minRad2 0.25
-float SCALE = 3.3 ;
+#define dthresh 1.1
+float minRad2 = 0.25 + sin(u_time/9.) / 5.;
+float SCALE =  3. + params.x; // + sin(u_time/50. + uv.x)/2. ;
 vec4 scale = vec4(SCALE, SCALE, SCALE, abs(SCALE)) / minRad2;
 
 //----------------------------------------------------------------------------------------
@@ -24,7 +27,7 @@ float DE(vec3 pos)
     vec4 p = vec4(pos,1);
     vec4 p0 = p;  // p.w is the distance estimate
     
-    for (int i = 0; i < 8; i++)
+    for (int i = 0; i < 10; i++)
     {
         p.xyz = clamp(p.xyz, -1.0, 1.0) * 2.0 - p.xyz;
         
@@ -41,7 +44,7 @@ float DE(vec3 pos)
 
 vec3 gradient(vec3 p) {
     
-    vec2 e = vec2(0., 0.001);
+    vec2 e = vec2(0., 0.0001);
     return normalize(
                      vec3(
                           DE(p+e.yxx) - DE(p-e.yxx),
@@ -54,7 +57,9 @@ vec3 gradient(vec3 p) {
 
 vec3 CameraPath( float t )
 {
-   return vec3(-.81 + 3. * sin(2.14*t),.05+2.5 * sin(.942*t+1.3),.05 + 3.5 * cos(3.594*t) );
+   return 0.7 * vec3(-.81 + 3. * sin(2.14*t),
+               .05+2.5 * sin(.942*t+1.3),
+               .05 + 3.5 * cos(3.594*t) );
 }
 
 vec3 hsv(in float h, in float s, in float v) {
@@ -68,7 +73,7 @@ void main() {
     bool hit = false;
     
     vec4 n = texture2D(noiseSampler, fract(v_coord * sin(u_time * 100.)));
-    vec2 jitter = 3.0 * (n.xy - 0.5) / u_resolution.xy;
+    vec2 jitter = 0.0 * (n.xy - 0.5) / u_resolution.xy;
     
     vec3 ray = normalize( vec3(v_coord + jitter, 1.0) );
     ray = (u_modelViewTransform * vec4(ray, 0.0)).xyz;
