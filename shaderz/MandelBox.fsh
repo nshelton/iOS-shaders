@@ -55,21 +55,13 @@ vec3 gradient(vec3 p) {
 }
 
 
-vec3 CameraPath( float t )
-{
-   return 0.7 * vec3(-.81 + 3. * sin(2.14*t),
-               .05+2.5 * sin(.942*t+1.3),
-               .05 + 3.5 * cos(3.594*t) );
-}
-
 vec3 hsv(in float h, in float s, in float v) {
     return mix(vec3(1.0), clamp((abs(fract(h + vec3(3, 2, 1) / 3.0) * 6.0 - 3.0) - 1.0), 0.0 , 1.0), s) * v;
 }
 
 void main() {
     //raymarcher!
-    vec3 camera = vec3(u_modelViewTransform[3].xyz);// CameraPath(u_time/100.);
-    vec3 point;
+    vec3 camera = vec3(u_modelViewTransform[3].xyz);    vec3 point;
     bool hit = false;
     
     vec4 n = texture2D(noiseSampler, fract(v_coord * sin(u_time * 100.)));

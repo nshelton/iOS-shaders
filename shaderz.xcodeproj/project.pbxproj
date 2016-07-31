@@ -24,6 +24,13 @@
 		2C8453581CE94AD1009D3824 /* post.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C8453541CE94AD1009D3824 /* post.fsh */; };
 		2C9B202E1D49E9D800A65E0B /* postfx.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C9B202C1D49E9D800A65E0B /* postfx.fsh */; };
 		2C9B202F1D49E9D800A65E0B /* postfx.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C9B202D1D49E9D800A65E0B /* postfx.vsh */; };
+		2CB419AB1D4AE89E0033AA87 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB419AA1D4AE89E0033AA87 /* AppDelegate.m */; };
+		2CB419AE1D4AE89E0033AA87 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB419AD1D4AE89E0033AA87 /* main.m */; };
+		2CB419B11D4AE89E0033AA87 /* GameView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB419B01D4AE89E0033AA87 /* GameView.m */; };
+		2CB419B41D4AE89E0033AA87 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB419B31D4AE89E0033AA87 /* GameViewController.m */; };
+		2CB419B61D4AE89E0033AA87 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB419B51D4AE89E0033AA87 /* art.scnassets */; };
+		2CB419B81D4AE89E0033AA87 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CB419B71D4AE89E0033AA87 /* Assets.xcassets */; };
+		2CB419BB1D4AE89E0033AA87 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CB419B91D4AE89E0033AA87 /* MainMenu.xib */; };
 		2CD7575F1CE99D7600024F6D /* MandelBox.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2CD7575E1CE99D7600024F6D /* MandelBox.plist */; };
 		2CD757611CE99D8F00024F6D /* MandelBox.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 2CD757601CE99D8F00024F6D /* MandelBox.vsh */; };
 		2CD757631CE99DA000024F6D /* MandelBox.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2CD757621CE99DA000024F6D /* MandelBox.fsh */; };
@@ -70,6 +77,18 @@
 		2C8453541CE94AD1009D3824 /* post.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = post.fsh; sourceTree = "<group>"; };
 		2C9B202C1D49E9D800A65E0B /* postfx.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = postfx.fsh; sourceTree = "<group>"; };
 		2C9B202D1D49E9D800A65E0B /* postfx.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = postfx.vsh; sourceTree = "<group>"; };
+		2CB419A71D4AE89E0033AA87 /* DesktopShaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopShaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CB419A91D4AE89E0033AA87 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2CB419AA1D4AE89E0033AA87 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2CB419AD1D4AE89E0033AA87 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2CB419AF1D4AE89E0033AA87 /* GameView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameView.h; sourceTree = "<group>"; };
+		2CB419B01D4AE89E0033AA87 /* GameView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameView.m; sourceTree = "<group>"; };
+		2CB419B21D4AE89E0033AA87 /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		2CB419B31D4AE89E0033AA87 /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		2CB419B51D4AE89E0033AA87 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		2CB419B71D4AE89E0033AA87 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2CB419BA1D4AE89E0033AA87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		2CB419BC1D4AE89E0033AA87 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2CD7575E1CE99D7600024F6D /* MandelBox.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = MandelBox.plist; sourceTree = "<group>"; };
 		2CD757601CE99D8F00024F6D /* MandelBox.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MandelBox.vsh; sourceTree = "<group>"; };
 		2CD757621CE99DA000024F6D /* MandelBox.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = MandelBox.fsh; sourceTree = "<group>"; };
@@ -97,6 +116,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2CB419A41D4AE89E0033AA87 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -105,6 +131,7 @@
 			children = (
 				2C45F9B51D49EBA900C6AEFF /* View.xib */,
 				2C0112601CE59B2C003E98F3 /* shaderz */,
+				2CB419A81D4AE89E0033AA87 /* DesktopShaders */,
 				2C01125F1CE59B2C003E98F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -115,6 +142,7 @@
 				2C01125E1CE59B2C003E98F3 /* shaderz.app */,
 				2C0112791CE59B2C003E98F3 /* shaderzTests.xctest */,
 				2C0112841CE59B2C003E98F3 /* shaderzUITests.xctest */,
+				2CB419A71D4AE89E0033AA87 /* DesktopShaders.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -143,6 +171,32 @@
 			isa = PBXGroup;
 			children = (
 				2C0112621CE59B2C003E98F3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2CB419A81D4AE89E0033AA87 /* DesktopShaders */ = {
+			isa = PBXGroup;
+			children = (
+				2CB419A91D4AE89E0033AA87 /* AppDelegate.h */,
+				2CB419AA1D4AE89E0033AA87 /* AppDelegate.m */,
+				2CB419AF1D4AE89E0033AA87 /* GameView.h */,
+				2CB419B01D4AE89E0033AA87 /* GameView.m */,
+				2CB419B21D4AE89E0033AA87 /* GameViewController.h */,
+				2CB419B31D4AE89E0033AA87 /* GameViewController.m */,
+				2CB419B51D4AE89E0033AA87 /* art.scnassets */,
+				2CB419B71D4AE89E0033AA87 /* Assets.xcassets */,
+				2CB419B91D4AE89E0033AA87 /* MainMenu.xib */,
+				2CB419BC1D4AE89E0033AA87 /* Info.plist */,
+				2CB419AC1D4AE89E0033AA87 /* Supporting Files */,
+			);
+			path = DesktopShaders;
+			sourceTree = "<group>";
+		};
+		2CB419AC1D4AE89E0033AA87 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2CB419AD1D4AE89E0033AA87 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -236,6 +290,23 @@
 			productReference = 2C0112841CE59B2C003E98F3 /* shaderzUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		2CB419A61D4AE89E0033AA87 /* DesktopShaders */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2CB419BF1D4AE89E0033AA87 /* Build configuration list for PBXNativeTarget "DesktopShaders" */;
+			buildPhases = (
+				2CB419A31D4AE89E0033AA87 /* Sources */,
+				2CB419A41D4AE89E0033AA87 /* Frameworks */,
+				2CB419A51D4AE89E0033AA87 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DesktopShaders;
+			productName = DesktopShaders;
+			productReference = 2CB419A71D4AE89E0033AA87 /* DesktopShaders.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -256,6 +327,9 @@
 						CreatedOnToolsVersion = 7.3;
 						TestTargetID = 2C01125D1CE59B2C003E98F3;
 					};
+					2CB419A61D4AE89E0033AA87 = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
 				};
 			};
 			buildConfigurationList = 2C0112591CE59B2C003E98F3 /* Build configuration list for PBXProject "shaderz" */;
@@ -274,6 +348,7 @@
 				2C01125D1CE59B2C003E98F3 /* shaderz */,
 				2C0112781CE59B2C003E98F3 /* shaderzTests */,
 				2C0112831CE59B2C003E98F3 /* shaderzUITests */,
+				2CB419A61D4AE89E0033AA87 /* DesktopShaders */,
 			);
 		};
 /* End PBXProject section */
@@ -317,6 +392,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		2CB419A51D4AE89E0033AA87 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CB419B81D4AE89E0033AA87 /* Assets.xcassets in Resources */,
+				2CB419B61D4AE89E0033AA87 /* art.scnassets in Resources */,
+				2CB419BB1D4AE89E0033AA87 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -341,6 +426,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2CB419A31D4AE89E0033AA87 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2CB419B41D4AE89E0033AA87 /* GameViewController.m in Sources */,
+				2CB419B11D4AE89E0033AA87 /* GameView.m in Sources */,
+				2CB419AE1D4AE89E0033AA87 /* main.m in Sources */,
+				2CB419AB1D4AE89E0033AA87 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +470,14 @@
 				2C0112721CE59B2C003E98F3 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		2CB419B91D4AE89E0033AA87 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2CB419BA1D4AE89E0033AA87 /* Base */,
+			);
+			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -533,6 +637,36 @@
 			};
 			name = Release;
 		};
+		2CB419BD1D4AE89E0033AA87 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DesktopShaders/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.occipital.DesktopShaders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		2CB419BE1D4AE89E0033AA87 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = DesktopShaders/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.occipital.DesktopShaders;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -571,6 +705,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		2CB419BF1D4AE89E0033AA87 /* Build configuration list for PBXNativeTarget "DesktopShaders" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CB419BD1D4AE89E0033AA87 /* Debug */,
+				2CB419BE1D4AE89E0033AA87 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
