@@ -46,12 +46,35 @@
 	</dict>
 	<key>sequence</key>
 	<array>
+		<string>copy</string>
 		<string>raytrace</string>
+		<string>reconstruction</string>
 		<string>post</string>
 		<string>fx</string>
 	</array>
 	<key>passes</key>
 	<dict>
+		<key>reconstruction</key>
+		<dict>
+			<key>draw</key>
+			<string>DRAW_QUAD</string>
+			<key>program</key>
+			<string>reconstruction_filter</string>
+			<key>inputs</key>
+			<dict>
+				<key>lastFrame</key>
+				<string>lastFrame</string>
+				<key>traceResult</key>
+				<string>traceResult</string>
+				<key>resolution</key>
+				<string>resolutionSymbol</string>
+			</dict>
+			<key>outputs</key>
+			<dict>
+				<key>color</key>
+				<string>reconstruction</string>
+			</dict>
+		</dict>
 		<key>raytrace</key>
 		<dict>
 			<key>draw</key>
@@ -70,6 +93,8 @@
 				<string>resolutionSymbol</string>
 				<key>params</key>
 				<string>paramSymbol</string>
+				<key>lastFrame</key>
+				<string>lastFrame</string>
 			</dict>
 			<key>outputs</key>
 			<dict>
@@ -86,15 +111,13 @@
 			<key>inputs</key>
 			<dict>
 				<key>colorSampler</key>
-				<string>traceResult</string>
+				<string>reconstruction</string>
 				<key>params</key>
 				<string>renderParamSymbol</string>
 				<key>noiseSampler</key>
 				<string>noiseSymbol</string>
 				<key>colorMap</key>
 				<string>colorMapSymbol</string>
-				<key>lastFrame</key>
-				<string>lastFrame</string>
 			</dict>
 			<key>outputs</key>
 			<dict>
@@ -110,8 +133,8 @@
 			<string>copy</string>
 			<key>inputs</key>
 			<dict>
-				<key>colorSampler</key>
-				<string>traceResult</string>
+				<key>colorBuffer</key>
+				<string>colorBuffer</string>
 			</dict>
 			<key>outputs</key>
 			<dict>
@@ -141,7 +164,7 @@
 	</dict>
 	<key>targets</key>
 	<dict>
-		<key>lastFrame</key>
+		<key>reconstruction</key>
 		<dict>
 			<key>type</key>
 			<string>color</string>
@@ -151,10 +174,19 @@
 			<key>type</key>
 			<string>color</string>
 		</dict>
+		<key>lastFrame</key>
+		<dict>
+			<key>type</key>
+			<string>color</string>
+		</dict>
 		<key>traceResult</key>
 		<dict>
 			<key>type</key>
 			<string>color</string>
+			<key>scaleFactor</key>
+			<real>0.25</real>
+			<key>persistent</key>
+			<string>YES</string>
 		</dict>
 	</dict>
 </dict>

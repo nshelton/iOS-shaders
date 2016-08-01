@@ -41,7 +41,6 @@
          glUniformMatrix4fv(location, 1, GL_FALSE, _cameraView.m);     }
      ];
     
-    
     url = [[NSBundle mainBundle] URLForResource:@"torusField" withExtension:@"plist"];
     SCNTechnique *technique1 = [SCNTechnique techniqueWithDictionary:[NSDictionary dictionaryWithContentsOfURL:url]];
     [technique1
@@ -116,7 +115,7 @@
     _scnView.technique = _techniques[0];
 
     NSLog(@"Scale factor is %f", _scnView.contentScaleFactor);
-    _scnView.contentScaleFactor = 0.5;
+//    _scnView.contentScaleFactor = 0.5;
     
     
 

@@ -1,6 +1,8 @@
 precision highp float;
 
 uniform sampler2D noiseSampler;
+uniform sampler2D lastFrame;
+
 uniform float u_time;
 uniform vec3 u_resolution;
 varying vec2 uv;
@@ -17,8 +19,6 @@ float dthresh = params.y;
 float minRad2 = params.z;
 float SCALE =  params.x; // + sin(u_time/50. + uv.x)/2. ;
 vec4 scale = vec4(SCALE, SCALE, SCALE, abs(SCALE)) / minRad2;
-
-
 
 
 
@@ -134,14 +134,17 @@ void main() {
     bool hit = false;
     
     vec4 n = texture2D(noiseSampler, fract(v_coord * sin(u_time * 100.)));
-    vec2 jitter = 0.0 * (n.xy - 0.5) / u_resolution.xy;
+    vec2 jitter = 4.0 * (n.xy - 0.5) / u_resolution.xy;
     
     vec3 ray = normalize( vec3(v_coord + jitter, 1.0) );
     ray = (u_modelViewTransform * vec4(ray, 0.0)).xyz;
     
     // raycasting parameter
-    float t = 0.;
-    float iter = 0.0;
+    vec4 lastTrace = texture2D(lastFrame, uv);
+
+    float t = lastTrace.z * 0.9;
+    float iter = 0.0; //lastTrace.x/2.0 * float(MAX_ITER);
+    
     
     // ray stepping
     for(int i = 0; i < MAX_ITER; i++) {
@@ -163,6 +166,6 @@ void main() {
     float shade = abs(dot(normal, ray));
 
     
-    gl_FragColor = vec4(iter/float(MAX_ITER), shade, t , ao );
+    gl_FragColor = vec4( lastTrace.x * 0.9 + iter/float(MAX_ITER), shade, t , ao );
     
 }

@@ -16,6 +16,8 @@
 		2C0112731CE59B2C003E98F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C0112711CE59B2C003E98F3 /* LaunchScreen.storyboard */; };
 		2C09812E1D4EADBE0051A183 /* copy.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C09812D1D4EADBE0051A183 /* copy.vsh */; };
 		2C0981301D4EADC60051A183 /* copy.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C09812F1D4EADC60051A183 /* copy.fsh */; };
+		2C0981321D4F14780051A183 /* reconstruction_filter.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C0981311D4F14780051A183 /* reconstruction_filter.vsh */; };
+		2C0981341D4F14870051A183 /* postfx.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C0981331D4F14870051A183 /* postfx.fsh */; };
 		2C3539251D48720A0071548F /* colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3539241D48720A0071548F /* colormap.png */; };
 		2C45F9B61D49EBA900C6AEFF /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C45F9B51D49EBA900C6AEFF /* View.xib */; };
 		2C84534E1CE94A75009D3824 /* torusField.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C84534D1CE94A75009D3824 /* torusField.plist */; };
@@ -24,7 +26,7 @@
 		2C8453561CE94AD1009D3824 /* torusField.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C8453521CE94AD1009D3824 /* torusField.vsh */; };
 		2C8453571CE94AD1009D3824 /* post.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C8453531CE94AD1009D3824 /* post.vsh */; };
 		2C8453581CE94AD1009D3824 /* post.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C8453541CE94AD1009D3824 /* post.fsh */; };
-		2C9B202E1D49E9D800A65E0B /* postfx.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C9B202C1D49E9D800A65E0B /* postfx.fsh */; };
+		2C9B202E1D49E9D800A65E0B /* reconstruction_filter.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C9B202C1D49E9D800A65E0B /* reconstruction_filter.fsh */; };
 		2C9B202F1D49E9D800A65E0B /* postfx.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C9B202D1D49E9D800A65E0B /* postfx.vsh */; };
 		2CB419AB1D4AE89E0033AA87 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB419AA1D4AE89E0033AA87 /* AppDelegate.m */; };
 		2CB419AE1D4AE89E0033AA87 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CB419AD1D4AE89E0033AA87 /* main.m */; };
@@ -71,6 +73,8 @@
 		2C0112841CE59B2C003E98F3 /* shaderzUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = shaderzUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C09812D1D4EADBE0051A183 /* copy.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = copy.vsh; sourceTree = "<group>"; };
 		2C09812F1D4EADC60051A183 /* copy.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = copy.fsh; sourceTree = "<group>"; };
+		2C0981311D4F14780051A183 /* reconstruction_filter.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = reconstruction_filter.vsh; sourceTree = "<group>"; };
+		2C0981331D4F14870051A183 /* postfx.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = postfx.fsh; sourceTree = "<group>"; };
 		2C3539241D48720A0071548F /* colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colormap.png; sourceTree = "<group>"; };
 		2C45F9B51D49EBA900C6AEFF /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = View.xib; path = shaderz/View.xib; sourceTree = "<group>"; };
 		2C84534D1CE94A75009D3824 /* torusField.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = torusField.plist; sourceTree = "<group>"; };
@@ -79,7 +83,7 @@
 		2C8453521CE94AD1009D3824 /* torusField.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = torusField.vsh; sourceTree = "<group>"; };
 		2C8453531CE94AD1009D3824 /* post.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = post.vsh; sourceTree = "<group>"; };
 		2C8453541CE94AD1009D3824 /* post.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = post.fsh; sourceTree = "<group>"; };
-		2C9B202C1D49E9D800A65E0B /* postfx.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = postfx.fsh; sourceTree = "<group>"; };
+		2C9B202C1D49E9D800A65E0B /* reconstruction_filter.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = reconstruction_filter.fsh; sourceTree = "<group>"; };
 		2C9B202D1D49E9D800A65E0B /* postfx.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = postfx.vsh; sourceTree = "<group>"; };
 		2CB419A71D4AE89E0033AA87 /* DesktopShaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DesktopShaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CB419A91D4AE89E0033AA87 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -208,10 +212,12 @@
 		2CD7575B1CE99D0800024F6D /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				2C9B202C1D49E9D800A65E0B /* postfx.fsh */,
+				2C9B202C1D49E9D800A65E0B /* reconstruction_filter.fsh */,
+				2C0981331D4F14870051A183 /* postfx.fsh */,
 				2C9B202D1D49E9D800A65E0B /* postfx.vsh */,
 				2C8453531CE94AD1009D3824 /* post.vsh */,
 				2C09812D1D4EADBE0051A183 /* copy.vsh */,
+				2C0981311D4F14780051A183 /* reconstruction_filter.vsh */,
 				2C8453541CE94AD1009D3824 /* post.fsh */,
 				2C09812F1D4EADC60051A183 /* copy.fsh */,
 				2C84534F1CE94AB7009D3824 /* noise.png */,
@@ -372,12 +378,14 @@
 				2C0112681CE59B2C003E98F3 /* art.scnassets in Resources */,
 				2C8453581CE94AD1009D3824 /* post.fsh in Resources */,
 				2C0112731CE59B2C003E98F3 /* LaunchScreen.storyboard in Resources */,
-				2C9B202E1D49E9D800A65E0B /* postfx.fsh in Resources */,
+				2C0981341D4F14870051A183 /* postfx.fsh in Resources */,
+				2C9B202E1D49E9D800A65E0B /* reconstruction_filter.fsh in Resources */,
 				2CD757611CE99D8F00024F6D /* MandelBox.vsh in Resources */,
 				2C45F9B61D49EBA900C6AEFF /* View.xib in Resources */,
 				2C8453571CE94AD1009D3824 /* post.vsh in Resources */,
 				2C0112701CE59B2C003E98F3 /* Assets.xcassets in Resources */,
 				2CD7575F1CE99D7600024F6D /* MandelBox.plist in Resources */,
+				2C0981321D4F14780051A183 /* reconstruction_filter.vsh in Resources */,
 				2C01126E1CE59B2C003E98F3 /* Main.storyboard in Resources */,
 				2C8453551CE94AD1009D3824 /* torusField.fsh in Resources */,
 				2C9B202F1D49E9D800A65E0B /* postfx.vsh in Resources */,
