@@ -10,7 +10,7 @@
 #import "GameViewController.h"
 #import <GLKit/GLKit.h>
 
-@interface GameViewController () <SCNSceneRendererDelegate>
+@interface GameViewController () <SCNSceneRendererDelegate, RPPreviewViewControllerDelegate>
 {
 
 }
@@ -393,14 +393,37 @@
 - (void)handleTripleTap
 {
 
-    
-    if(_scnView.contentScaleFactor == 0.5)
-        _scnView.contentScaleFactor = 2.0;
+    if( _screenRecorder == nil) {
+        _screenRecorder = [RPScreenRecorder sharedRecorder];
+    }
+
+    if(! _screenRecorder.isRecording &&  _screenRecorder.isAvailable)
+    {
+        [ _screenRecorder startRecordingWithMicrophoneEnabled:NO handler:^(NSError * _Nullable error) {
+            NSLog(@"Error Starting = %@", error);
+        }];
+    }
     else
-        _scnView.contentScaleFactor = 0.5;
+    {
+        [ _screenRecorder stopRecordingWithHandler:^(RPPreviewViewController * _Nullable previewViewController, NSError * _Nullable error) {
+            if(error != nil)
+            {
+                NSLog(@"Error Ending = %@", error);
+            }
+            else
+            {
+                previewViewController.previewControllerDelegate = self;
+                previewViewController.popoverPresentationController.sourceView = self.view;
+                [self presentViewController:previewViewController animated:YES completion:nil];
+            }
+        }];
+    }
 }
 
-
+- (void)previewControllerDidFinish:(RPPreviewViewController *)previewController
+{
+    [previewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 -(void) toggleNormals:(UIButton*)sender
 {

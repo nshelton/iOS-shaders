@@ -12,7 +12,7 @@ void main()
 //    vec3 d = 1.0 / resolution.xyz;
 //    d.z = 0.0;
 //    
-//    vec4 n0 = texture2D(lastFrame, uv);
+    vec4 n0 = texture2D(lastFrame, uv);
 //    vec4 n0e = texture2D(lastFrame, uv+ vec2(d.x, d.z));
 //    vec4 n0w = texture2D(lastFrame, uv+ vec2(-d.x, d.z));
 //    vec4 n0n = texture2D(lastFrame, uv+ vec2(d.z, d.y));
@@ -22,5 +22,5 @@ void main()
 //    
 //    float weight = 1.0 / exp( - abs(n0.z - n1.z) /2.0);
     
-    gl_FragColor = n1; // mix(n0, n1, 0.05);
+    gl_FragColor = n1; //mix(n0, n1, 0.1);
 }

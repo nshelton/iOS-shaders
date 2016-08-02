@@ -143,7 +143,7 @@ void main() {
     vec4 lastTrace = texture2D(lastFrame, uv);
 
     float t = lastTrace.z * 0.9;
-    float iter = 0.0; //lastTrace.x/2.0 * float(MAX_ITER);
+    float iter = 0.0; //lastTrace.x* 0.9 * float(MAX_ITER);
     
     
     // ray stepping
@@ -166,6 +166,6 @@ void main() {
     float shade = abs(dot(normal, ray));
 
     
-    gl_FragColor = vec4( lastTrace.x * 0.9 + iter/float(MAX_ITER), shade, t , ao );
+    gl_FragColor = vec4( iter/float(MAX_ITER) , shade, t , ao );
     
 }

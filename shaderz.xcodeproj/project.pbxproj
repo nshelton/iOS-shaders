@@ -20,6 +20,7 @@
 		2C0981341D4F14870051A183 /* postfx.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C0981331D4F14870051A183 /* postfx.fsh */; };
 		2C3539251D48720A0071548F /* colormap.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C3539241D48720A0071548F /* colormap.png */; };
 		2C45F9B61D49EBA900C6AEFF /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C45F9B51D49EBA900C6AEFF /* View.xib */; };
+		2C50C5A51D502BFE00ED3CE5 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C50C5A41D502BFE00ED3CE5 /* ReplayKit.framework */; };
 		2C84534E1CE94A75009D3824 /* torusField.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C84534D1CE94A75009D3824 /* torusField.plist */; };
 		2C8453501CE94AB7009D3824 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C84534F1CE94AB7009D3824 /* noise.png */; };
 		2C8453551CE94AD1009D3824 /* torusField.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 2C8453511CE94AD1009D3824 /* torusField.fsh */; };
@@ -77,6 +78,7 @@
 		2C0981331D4F14870051A183 /* postfx.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = postfx.fsh; sourceTree = "<group>"; };
 		2C3539241D48720A0071548F /* colormap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colormap.png; sourceTree = "<group>"; };
 		2C45F9B51D49EBA900C6AEFF /* View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = View.xib; path = shaderz/View.xib; sourceTree = "<group>"; };
+		2C50C5A41D502BFE00ED3CE5 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
 		2C84534D1CE94A75009D3824 /* torusField.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = torusField.plist; sourceTree = "<group>"; };
 		2C84534F1CE94AB7009D3824 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
 		2C8453511CE94AD1009D3824 /* torusField.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = torusField.fsh; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C50C5A51D502BFE00ED3CE5 /* ReplayKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +140,7 @@
 		2C0112551CE59B2C003E98F3 = {
 			isa = PBXGroup;
 			children = (
+				2C50C5A41D502BFE00ED3CE5 /* ReplayKit.framework */,
 				2C45F9B51D49EBA900C6AEFF /* View.xib */,
 				2C0112601CE59B2C003E98F3 /* shaderz */,
 				2CB419A81D4AE89E0033AA87 /* DesktopShaders */,

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <SceneKit/SceneKit.h>
+
+#import <ReplayKit/ReplayKit.h>
 @import CoreMotion;
 
 typedef NS_ENUM(NSInteger, UITouchControlState) {
@@ -49,6 +51,8 @@ typedef NS_ENUM(NSInteger, UITouchControlState) {
 @property (nonatomic, strong) NSArray*      techniques;
 @property (nonatomic, weak) SCNNode*        cameraNode;
 @property (nonatomic, ) GLKMatrix4            cameraView;
+@property (nonatomic)   RPScreenRecorder *  screenRecorder;
+
 
 
 
