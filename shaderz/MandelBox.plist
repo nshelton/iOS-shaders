@@ -4,6 +4,11 @@
 <dict>
 	<key>symbols</key>
 	<dict>
+		<key>frameToFrameSymbol</key>
+		<dict>
+			<key>type</key>
+			<string>mat4</string>
+		</dict>
 		<key>renderParamSymbol</key>
 		<dict>
 			<key>type</key>
@@ -62,8 +67,12 @@
 			<string>reconstruction_filter</string>
 			<key>inputs</key>
 			<dict>
-				<key>lastFrame</key>
-				<string>lastFrame</string>
+				<key>params</key>
+				<string>renderParamSymbol</string>
+				<key>frameToFrame</key>
+				<string>frameToFrameSymbol</string>
+				<key>reconstruction</key>
+				<string>reconstruction_swap</string>
 				<key>traceResult</key>
 				<string>traceResult</string>
 				<key>resolution</key>
@@ -134,12 +143,12 @@
 			<key>inputs</key>
 			<dict>
 				<key>colorBuffer</key>
-				<string>colorBuffer</string>
+				<string>reconstruction</string>
 			</dict>
 			<key>outputs</key>
 			<dict>
 				<key>color</key>
-				<string>lastFrame</string>
+				<string>reconstruction_swap</string>
 			</dict>
 		</dict>
 		<key>fx</key>
@@ -164,17 +173,19 @@
 	</dict>
 	<key>targets</key>
 	<dict>
+		<key>reconstruction_swap</key>
+		<dict>
+			<key>type</key>
+			<string>color</string>
+		</dict>
 		<key>reconstruction</key>
 		<dict>
 			<key>type</key>
 			<string>color</string>
+			<key>persistent</key>
+			<string>YES</string>
 		</dict>
 		<key>colorBuffer</key>
-		<dict>
-			<key>type</key>
-			<string>color</string>
-		</dict>
-		<key>lastFrame</key>
 		<dict>
 			<key>type</key>
 			<string>color</string>
@@ -184,7 +195,7 @@
 			<key>type</key>
 			<string>color</string>
 			<key>scaleFactor</key>
-			<real>0.25</real>
+			<integer>1</integer>
 			<key>persistent</key>
 			<string>YES</string>
 		</dict>

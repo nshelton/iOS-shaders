@@ -37,7 +37,8 @@ typedef NS_ENUM(NSInteger, UITouchControlState) {
     
     int _colorMap;
     float _renderStyle;
-    
+    float _integrationWeight;
+    float _filterType;
 }
 
 
@@ -46,11 +47,14 @@ typedef NS_ENUM(NSInteger, UITouchControlState) {
 
 @property (strong, nonatomic) IBOutlet UISlider *scaleSlider;
 @property (strong, nonatomic) IBOutlet UISlider *threshSlider;
+@property (strong, nonatomic) IBOutlet UISlider *integrateSlider;
 
 @property (nonatomic, weak) SCNView*        scnView;
 @property (nonatomic, strong) NSArray*      techniques;
 @property (nonatomic, weak) SCNNode*        cameraNode;
 @property (nonatomic, ) GLKMatrix4            cameraView;
+@property (nonatomic, ) GLKMatrix4            lastFrameCameraView;
+
 @property (nonatomic)   RPScreenRecorder *  screenRecorder;
 
 

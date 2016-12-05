@@ -9,44 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "shaderz/GameViewController.h"
-            timestampString = "491793408.941008"
+            filePath = "shaderz/GameViewController.m"
+            timestampString = "492383587.591944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "10"
-            endingLineNumber = "10">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GameViewController radSlider]"
-                  moduleName = "shaderz"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nshelton/dev/iOSdev/shaderz/shaderz/GameViewController.h"
-                  timestampString = "491794210.600147"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GameViewController setRadSlider:]"
-                  moduleName = "shaderz"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/nshelton/dev/iOSdev/shaderz/shaderz/GameViewController.h"
-                  timestampString = "491794210.600352"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "64">
-               </Location>
-            </Locations>
+            startingLineNumber = "489"
+            endingLineNumber = "489"
+            landmarkName = "-handleDoubleTap:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -34,27 +34,28 @@
     NSURL *url;
     url = [[NSBundle mainBundle] URLForResource:@"MandelBox" withExtension:@"plist"];
     SCNTechnique *technique0 = [SCNTechnique techniqueWithDictionary:[NSDictionary dictionaryWithContentsOfURL:url]];
+    
+    
     [technique0
      handleBindingOfSymbol:@"modelViewSymbol"
      usingBlock:^(unsigned int programID, unsigned int location, SCNNode* _Nonnull renderedNode, SCNRenderer* _Nonnull renderer) {
 
          glUniformMatrix4fv(location, 1, GL_FALSE, _cameraView.m);     }
      ];
-    
-    url = [[NSBundle mainBundle] URLForResource:@"torusField" withExtension:@"plist"];
-    SCNTechnique *technique1 = [SCNTechnique techniqueWithDictionary:[NSDictionary dictionaryWithContentsOfURL:url]];
-    [technique1
-     handleBindingOfSymbol:@"modelViewSymbol"
+
+    [technique0
+     handleBindingOfSymbol:@"frameToFrameSymbol"
      usingBlock:^(unsigned int programID, unsigned int location, SCNNode* _Nonnull renderedNode, SCNRenderer* _Nonnull renderer) {
          
-         float t = 0.5 + CACurrentMediaTime()/100.;
-         _cameraView = GLKMatrix4Translate(_cameraView, -.81 + 3. * sin(2.14*t), .05+2.5 * sin(.942*t+1.3), .05 + 3.5 * cos(3.594*t));
-         NSLog(@"BINDING: %@", NSStringFromGLKMatrix4(_cameraView));
-         glUniformMatrix4fv(location, 1, GL_FALSE, _cameraView.m);
-         
-     }
+
+         bool isInvertible = false;
+         GLKMatrix4 thisMVInv = GLKMatrix4Invert(_lastFrameCameraView, &isInvertible);
+         GLKMatrix4 composed = GLKMatrix4Multiply(thisMVInv, _cameraView);
+         glUniformMatrix4fv(location, 1, GL_FALSE, composed.m);     }
      ];
-    _techniques = @[technique0, technique1];
+
+    
+    _techniques = @[technique0];
 }
 
 
@@ -94,10 +95,15 @@
 
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
 
+        UITapGestureRecognizer *doubleTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleDoubleTap:)];
+    
+    doubleTapGesture.numberOfTouchesRequired = 2;
     
     NSMutableArray *gestureRecognizers = [NSMutableArray array];
     [gestureRecognizers addObjectsFromArray:_scnView.gestureRecognizers];
     [gestureRecognizers addObject:tapGesture];
+    [gestureRecognizers addObject:doubleTapGesture];
+
     [gestureRecognizers addObject:pinchGesture];
 
     
@@ -115,7 +121,7 @@
     _scnView.technique = _techniques[0];
 
     NSLog(@"Scale factor is %f", _scnView.contentScaleFactor);
-//    _scnView.contentScaleFactor = 0.5;
+    _scnView.contentScaleFactor = 0.5;
     
     
 
@@ -127,7 +133,7 @@
         _scaleSlider.minimumValue = -5.0;
         _scaleSlider.maximumValue = 5.0;
         _scaleSlider.continuous = YES;
-        _scaleSlider.value = 2.0;
+        _scaleSlider.value = -3.5;
     
         [self.view addSubview:_scaleSlider];
 
@@ -137,9 +143,9 @@
     [_threshSlider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
     [_scaleSlider setBackgroundColor:[UIColor clearColor]];
     _threshSlider.minimumValue = 0;
-    _threshSlider.maximumValue = 10.0;
+    _threshSlider.maximumValue = 5.0;
     _threshSlider.continuous = YES;
-    _threshSlider.value = 2.0;
+    _threshSlider.value = 3.0;
     
     [self.view addSubview:_threshSlider];
     frame = CGRectMake(0.0, 30.0, 600.0, 20.0);
@@ -148,19 +154,30 @@
     [_radSlider addTarget:self action:@selector(sliderChanged:) forControlEvents:UIControlEventValueChanged];
     [_radSlider setBackgroundColor:[UIColor clearColor]];
     _radSlider.minimumValue = 0;
-    _radSlider.maximumValue = 1.0;
+    _radSlider.maximumValue = 10.0;
     _radSlider.continuous = YES;
     _radSlider.value = 0.25;
     
     [self.view addSubview:_radSlider];
+
+
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
     [button addTarget:self
                action:@selector(toggleNormals:)
      forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@"Shaded" forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 100, 100.0, 20.0);
+    [button setTitle:@"Fog" forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 200, 100.0, 50.0);
     [self.view addSubview:button];
+    
+    
+    UIButton *iButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [iButton addTarget:self
+               action:@selector(toggleIntegrate:)
+     forControlEvents:UIControlEventTouchUpInside];
+    [iButton setTitle:@"Filter" forState:UIControlStateNormal];
+    iButton.frame = CGRectMake(0, 250, 100.0, 50.0);
+    [self.view addSubview:iButton];
     
 //    [self.view  becomeFirstResponder];
     [self becomeFirstResponder];
@@ -169,9 +186,12 @@
     _quat = GLKQuaternionMake(0, 0, 0, 1);
     _quatStart = GLKQuaternionMake(0, 0, 0, 1);
     
-    _translation = GLKVector3Make(0, 0.5, -0.51);
-    _colorMap = 0.0;
-    _renderStyle = 0.0;
+    _translation = GLKVector3Make(0, 0.1, -0.1);
+    _colorMap = 4.0;
+    _renderStyle = 2.0;
+    _integrationWeight = 1.0;
+    _filterType  = 0.0;
+    
     
     controlState = UITouchControlStateNone;
     [self update];
@@ -189,6 +209,12 @@
 //    _camDistance *= sqrt(sqrt(sqrt(sqrt(recognizer.scale))));
     [self update];
 //    NSLog(@"pinch scale is %f", recognizer.scale);
+}
+
+- (void) toggleIntegrate:(UIButton*)sender
+{
+    _filterType = ( (int)_filterType+ 1 ) % 3;
+    [self updateUniforms];
 }
 
 - (BOOL)shouldAutorotate
@@ -226,6 +252,7 @@
 
 - (void)update {
 
+    _lastFrameCameraView = _cameraView;
     
     _cameraView = GLKMatrix4MakeTranslation(_translation.x, _translation.y, _translation.z);
     _rotMatrix = GLKMatrix4MakeWithQuaternion(_quat);
@@ -321,9 +348,13 @@
         p = GLKVector3Subtract(_anchor_position, p);
 
         
+        
         _drag_amount = GLKVector3Make(-0.05 * p.x/self.view.frame.size.width,
                                       0,
                                       0.05 * p.y/self.view.frame.size.height);
+        
+        _drag_amount.x = exp ( _drag_amount.x ) - 1;
+        _drag_amount.y = exp ( _drag_amount.y ) - 1;
 
         GLKMatrix4 rotMatrixInv = GLKMatrix4Transpose(_rotMatrix);
         _drag_amount = GLKMatrix4MultiplyVector3(_cameraView, _drag_amount);
@@ -378,11 +409,12 @@
     [_scnView.technique setValue:params forKey:@"paramSymbol" ];
     
     NSString *render_params = [NSString stringWithFormat:@"%f, %f, %d, %f",
-                        _renderStyle, 0.0, _colorMap, 0.f];
+                               _renderStyle, _radSlider.value, _colorMap, _filterType];
     
     [_scnView.technique setValue:render_params forKey:@"renderParamSymbol" ];
-    NSLog(@"Set params to %@", render_params);
-    
+    NSLog(@"Set params to %@", params);
+    NSLog(@"Set renderparams to %@", render_params);
+
 }
 
 - (IBAction)sliderChanged:(id)sender
@@ -427,7 +459,7 @@
 
 -(void) toggleNormals:(UIButton*)sender
 {
-    _renderStyle  = ((int)_renderStyle + 1 ) % 3;
+    _renderStyle  = ((int)_renderStyle + 1 ) % 4;
     
     [self updateUniforms];
 }
@@ -442,15 +474,26 @@
 }
 
 
-//- (void)doubleTap:(UITapGestureRecognizer *)tap {
-//    
+- (void)handleDoubleTap:(UITapGestureRecognizer *)tap {
+
+    
+    if(self.view.contentScaleFactor == 0.5) {
+        self.view.contentScaleFactor = 1.0;
+    } else if(self.view.contentScaleFactor == 1.0) {
+        self.view.contentScaleFactor = 2.0;
+    } else {
+        self.view.contentScaleFactor = 0.5;
+    }
+    
+    
+    //
 //    _slerping = YES;
 //    _slerpCur = 0;
 //    _slerpMax = 1.0;
 //    _slerpStart = _quat;
 //    _slerpEnd = GLKQuaternionMake(0, 0, 0, 1);
 //    
-//}
+}
 
 
 @end
